@@ -1,6 +1,6 @@
 {
 	"name": "svelte-table-views",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "Save and restore table view configurations with localStorage persistence for Svelte applications",
 	"keywords": [
 		"svelte",

@@ -202,7 +202,7 @@
 	<!-- Dropdown Menu -->
 	{#if open}
 		<div
-			class="absolute left-0 mt-2 w-80 bg-white border border-gray-200 rounded-lg shadow-lg z-50 max-h-96 flex flex-col"
+			class="absolute left-0 mt-2 w-80 bg-white border border-gray-200 rounded-lg shadow-xl z-[100] max-h-96 flex flex-col overflow-hidden"
 		>
 			<!-- Search -->
 			<div class="p-3 border-b border-gray-200">
@@ -230,7 +230,7 @@
 			</div>
 
 			<!-- Scrollable Content -->
-			<div class="overflow-y-auto flex-1">
+			<div class="overflow-y-auto flex-1 bg-white">
 				<!-- Recent Views -->
 				{#if $recentViews.length > 0 && !searchQuery}
 					<div class="px-3 py-2 border-b border-gray-200">
