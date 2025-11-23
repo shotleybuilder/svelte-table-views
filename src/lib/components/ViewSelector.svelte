@@ -163,7 +163,7 @@
 
 <svelte:window on:click={handleClickOutside} on:keydown={handleKeydown} />
 
-<div class="view-selector relative">
+<div class="view-selector relative z-50">
 	<!-- Trigger Button -->
 	<button
 		type="button"
@@ -205,7 +205,7 @@
 			class="absolute left-0 mt-2 w-80 bg-white border border-gray-200 rounded-lg shadow-xl z-[100] max-h-96 flex flex-col overflow-hidden"
 		>
 			<!-- Search -->
-			<div class="p-3 border-b border-gray-200">
+			<div class="p-3 border-b border-gray-200 bg-white">
 				<div class="relative">
 					<svg
 						class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400"
@@ -233,23 +233,25 @@
 			<div class="overflow-y-auto flex-1 bg-white">
 				<!-- Recent Views -->
 				{#if $recentViews.length > 0 && !searchQuery}
-					<div class="px-3 py-2 border-b border-gray-200">
+					<div class="px-3 py-2 border-b border-gray-200 bg-white">
 						<h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
 							Recent
 						</h3>
 						{#each $recentViews as view}
-							<button
-								type="button"
-								on:click={() => selectView(view)}
-								class="w-full text-left px-3 py-2 rounded-md hover:bg-gray-50 flex items-center justify-between group"
+							<div
+								class="w-full px-3 py-2 rounded-md hover:bg-gray-50 flex items-center justify-between group"
 								class:bg-indigo-50={view.id === $activeViewId}
 							>
-								<div class="flex-1 min-w-0">
+								<button
+									type="button"
+									on:click={() => selectView(view)}
+									class="flex-1 min-w-0 text-left"
+								>
 									<p class="text-sm font-medium text-gray-900 truncate">{view.name}</p>
 									<p class="text-xs text-gray-500">
 										Last used: {formatDate(view.lastUsed)}
 									</p>
-								</div>
+								</button>
 								<div class="flex items-center gap-1 opacity-0 group-hover:opacity-100">
 									<button
 										type="button"
@@ -282,13 +284,13 @@
 										</svg>
 									</button>
 								</div>
-							</button>
+							</div>
 						{/each}
 					</div>
 				{/if}
 
 				<!-- All Views -->
-				<div class="px-3 py-2">
+				<div class="px-3 py-2 bg-white">
 					<h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
 						{searchQuery ? 'Search Results' : 'All Views'}
 						{#if !searchQuery}
@@ -354,15 +356,17 @@
 									</div>
 								</div>
 							{:else}
-								<button
-									type="button"
-									on:click={() => selectView(view)}
-									class="w-full text-left px-3 py-2 rounded-md hover:bg-gray-50 flex items-center justify-between group mb-1"
+								<div
+									class="w-full px-3 py-2 rounded-md hover:bg-gray-50 flex items-center justify-between group mb-1"
 									class:bg-indigo-50={view.id === $activeViewId}
 									class:ring-2={selectedIndex === i}
 									class:ring-indigo-400={selectedIndex === i}
 								>
-									<div class="flex-1 min-w-0">
+									<button
+										type="button"
+										on:click={() => selectView(view)}
+										class="flex-1 min-w-0 text-left"
+									>
 										<p class="text-sm font-medium text-gray-900 truncate">{view.name}</p>
 										<div class="flex items-center gap-3 text-xs text-gray-500">
 											{#if view.config.filters.length > 0}
@@ -372,7 +376,7 @@
 												<span>{view.usageCount} uses</span>
 											{/if}
 										</div>
-									</div>
+									</button>
 									<div class="flex items-center gap-1 opacity-0 group-hover:opacity-100">
 										<button
 											type="button"
@@ -405,7 +409,7 @@
 											</svg>
 										</button>
 									</div>
-								</button>
+								</div>
 							{/if}
 						{/each}
 					{/if}
